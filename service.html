@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サービス内容 | 【地域名】エアコンクリーニング専門店</title>
+  <meta name="description" content="【地域名】エアコンクリーニング専門店のサービス内容。壁掛け・天井埋め込み・業務用エアコンの高圧洗浄から、浴室・換気扇など水回りクリーニングまで対応。">
+  <meta name="keywords" content="エアコンクリーニング,サービス,壁掛けエアコン,天井埋め込み,業務用エアコン,水回り,【地域名】">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    /* ── サービスカード ── */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    @media (min-width: 640px) {
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .service-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(8,145,178,0.09);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(8,145,178,0.18);
+    }
+    .service-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+    .service-card-body {
+      padding: 24px;
+    }
+    .service-card-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .service-card-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary2);
+      margin: 0 0 10px;
+    }
+    .service-card-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0 0 16px;
+    }
+    .service-tag {
+      display: inline-block;
+      background: var(--primary-bg);
+      color: var(--primary2);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin: 2px 4px 2px 0;
+    }
+
+    /* ── ポイントセクション ── */
+    .point-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 640px) {
+      .point-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .point-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .point-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(8,145,178,0.08);
+      border-top: 4px solid var(--primary);
+    }
+    .point-card .point-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .point-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0 0 8px;
+    }
+    .point-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── 対応エリアバナー ── */
+    .area-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary2) 100%);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .area-banner h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+    .area-banner p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin: 0 0 24px;
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <span class="logo-icon">❄️</span>
+      <span class="logo-text">【店舗名】<small>エアコンクリーニング専門店</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="global-nav" id="global-nav" aria-hidden="true">
+      <ul>
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="service.html" class="active">サービス</a></li>
+        <li><a href="price.html">料金</a></li>
+        <li><a href="cases.html">事例集</a></li>
+        <li><a href="about.html">会社概要</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+      <a href="contact.html" class="btn-primary nav-cta">無料見積もり</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ページヒーロー -->
+<div class="page-hero">
+  <div class="container">
+    <p class="page-hero-label">SERVICE</p>
+    <h1 class="page-hero-title">サービス内容</h1>
+    <p class="page-hero-desc">エアコンから水回りまで、プロの技術で徹底クリーニング。</p>
+  </div>
+</div>
+
+<!-- サービス一覧 -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">OUR SERVICE</p>
+      <h2 class="section-title">対応サービス一覧</h2>
+      <p class="section-desc">すべてのサービスにアフターフォロー・保証が付いています。</p>
+    </div>
+
+    <div class="service-grid">
+
+      <!-- 壁掛けエアコン -->
+      <div class="service-card fade-in">
+        <img class="service-card-img"
+          src="https://images.unsplash.com/photo-1621905251189-9e3c8d37c8b2?w=600&q=75&auto=format&fit=crop"
+          alt="壁掛けエアコンクリーニング" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-card-icon">🏠</span>
+          <h3>壁掛けエアコン クリーニング</h3>
+          <p>一般家庭に最も多いタイプ。内部フィルター・熱交換器・送風ファンを高圧洗浄で徹底除菌。カビ・ホコリ・イヤな臭いを根こそぎ除去します。</p>
+          <span class="service-tag">所要 約1.5〜2h</span>
+          <span class="service-tag">保証付き</span>
+          <span class="service-tag">女性スタッフ可</span>
+        </div>
+      </div>
+
+      <!-- 天井埋め込みエアコン -->
+      <div class="service-card fade-in">
+        <img class="service-card-img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75&auto=format&fit=crop"
+          alt="天井埋め込みエアコンクリーニング" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-card-icon">🏢</span>
+          <h3>天井埋め込みエアコン クリーニング</h3>
+          <p>カセット型（4方向・2方向）に対応。分解・洗浄・組み立てまで一貫して丁寧に施工。オフィス・店舗・マンション共用部にも対応。</p>
+          <span class="service-tag">所要 約2〜3h</span>
+          <span class="service-tag">店舗・オフィス可</span>
+        </div>
+      </div>
+
+      <!-- 業務用エアコン -->
+      <div class="service-card fade-in">
+        <img class="service-card-img"
+          src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&q=75&auto=format&fit=crop"
+          alt="業務用エアコンクリーニング" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-card-icon">🏭</span>
+          <h3>業務用エアコン クリーニング</h3>
+          <p>大型業務用から厨房・工場の特殊エアコンまで対応。定期メンテナンス契約プランもご用意しています。電気代の節約にも効果的。</p>
+          <span class="service-tag">定期契約可</span>
+          <span class="service-tag">見積無料</span>
+        </div>
+      </div>
+
+      <!-- 浴室クリーニング -->
+      <div class="service-card fade-in">
+        <img class="service-card-img"
+          src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=75&auto=format&fit=crop"
+          alt="浴室クリーニング" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-card-icon">🛁</span>
+          <h3>浴室クリーニング</h3>
+          <p>浴槽・床・壁・扉・換気口まで徹底洗浄。カビ・水垢・石けんカスを強力分解。清潔でカビのないバスルームを取り戻します。</p>
+          <span class="service-tag">所要 約2〜3h</span>
+          <span class="service-tag">セット割対応</span>
+        </div>
+      </div>
+
+      <!-- 換気扇・レンジフード -->
+      <div class="service-card fade-in">
+        <img class="service-card-img"
+          src="https://images.unsplash.com/photo-1556909190-eccf4a8bf97a?w=600&q=75&auto=format&fit=crop"
+          alt="換気扇・レンジフードクリーニング" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-card-icon">🍳</span>
+          <h3>換気扇・レンジフード クリーニング</h3>
+          <p>油汚れが蓄積した換気扇・レンジフードを分解洗浄。ニオイの原因を徹底除去し、換気効率もアップ。火災リスクも低減。</p>
+          <span class="service-tag">所要 約1.5〜2h</span>
+          <span class="service-tag">セット割対応</span>
+        </div>
+      </div>
+
+      <!-- まとめて割 -->
+      <div class="service-card fade-in" style="border: 2px solid var(--green); position:relative;">
+        <div style="position:absolute;top:12px;right:12px;background:var(--green);color:white;font-size:0.72rem;font-weight:700;padding:4px 12px;border-radius:20px;">おすすめ</div>
+        <div class="service-card-body" style="padding-top:36px;">
+          <span class="service-card-icon">🎁</span>
+          <h3>まとめてクリーニング（セット割）</h3>
+          <p>エアコン＋水回りなど複数箇所をまとめてご依頼いただくと割引適用。組み合わせ自由。まずはお気軽にご相談ください。</p>
+          <span class="service-tag" style="background:var(--green-bg);color:var(--green2);">複数割引</span>
+          <span class="service-tag" style="background:var(--green-bg);color:var(--green2);">組み合わせ自由</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 安心ポイント -->
+<section class="section" style="background: var(--primary-bg);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">WHY CHOOSE US</p>
+      <h2 class="section-title">安心して任せられる4つの理由</h2>
+    </div>
+    <div class="point-grid">
+      <div class="point-card fade-in">
+        <div class="point-num">01</div>
+        <h3>技術力</h3>
+        <p>プロの高圧洗浄機材と専用洗剤で、市販クリーニングでは届かない内部まで徹底除去。</p>
+      </div>
+      <div class="point-card fade-in">
+        <div class="point-num">02</div>
+        <h3>明朗会計</h3>
+        <p>作業前に必ず見積もり提示。追加料金なし、料金表どおりの安心価格です。</p>
+      </div>
+      <div class="point-card fade-in">
+        <div class="point-num">03</div>
+        <h3>保証付き</h3>
+        <p>施工後30日以内に気になる点があれば無料で再施工対応。安心の保証付き。</p>
+      </div>
+      <div class="point-card fade-in">
+        <div class="point-num">04</div>
+        <h3>最短翌日対応</h3>
+        <p>お急ぎの方にも対応。ご連絡いただいた翌日からの施工が可能です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 対応エリア -->
+<section class="section">
+  <div class="container">
+    <div class="area-banner fade-in">
+      <h2>【地域名】エリア 出張対応中</h2>
+      <p>【地域名】を中心に近隣エリアへも出張いたします。<br>エリア外のご依頼もお気軽にご相談ください。</p>
+      <a href="contact.html" class="btn-primary" style="background:var(--white);color:var(--primary2);font-weight:700;">無料見積もりを依頼する →</a>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span>❄️ 【店舗名】エアコンクリーニング専門店</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">トップ</a>
+      <a href="service.html">サービス</a>
+      <a href="price.html">料金</a>
+      <a href="cases.html">事例集</a>
+      <a href="about.html">会社概要</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 【店舗名】. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- チャットボットウィジェット -->
+<div class="chatbot-launcher" id="chatbot-launcher" aria-label="チャットを開く">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <span class="badge-dot"></span>
+</div>
+<div class="chatbot-window" id="chatbot-window" aria-hidden="true">
+  <div class="chatbot-header">
+    <span>💬 サポートチャット</span>
+    <button class="chatbot-close" aria-label="チャットを閉じる">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages"></div>
+  <div class="chatbot-quick" id="chatbot-quick"></div>
+  <div class="chatbot-input-row">
+    <input type="text" class="chatbot-input" placeholder="質問を入力…" aria-label="メッセージを入力">
+    <button class="chatbot-send" aria-label="送信">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/chatbot.js"></script>
+<script>
+/* ハンバーガーメニュー */
+const hamburger = document.getElementById('hamburger');
+const globalNav = document.getElementById('global-nav');
+if (hamburger && globalNav) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+    globalNav.classList.toggle('open', !isOpen);
+    globalNav.setAttribute('aria-hidden', isOpen);
+  });
+}
+
+/* フェードインアニメーション */
+const fadeEls = document.querySelectorAll('.fade-in');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => io.observe(el));
+} else {
+  fadeEls.forEach(el => el.classList.add('visible'));
+}
+</script>
+</body>
+</html>

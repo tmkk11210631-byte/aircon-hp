@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会社概要 | 【地域名】エアコンクリーニング専門店</title>
+  <meta name="description" content="【店舗名】エアコンクリーニング専門店の会社概要。【地域名】を中心にエアコン・水回りクリーニングを展開。代表メッセージ・会社情報・対応エリアをご覧ください。">
+  <meta name="keywords" content="会社概要,エアコンクリーニング,【地域名】,【店舗名】">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    /* ── 会社概要テーブル ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    @media (min-width: 860px) {
+      .about-layout { grid-template-columns: 1fr 360px; }
+    }
+
+    .company-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(8,145,178,0.09);
+    }
+    .company-table th,
+    .company-table td {
+      padding: 16px 20px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .company-table th {
+      background: var(--primary-bg);
+      color: var(--primary2);
+      font-weight: 700;
+      width: 30%;
+      white-space: nowrap;
+    }
+    .company-table tr:last-child th,
+    .company-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── 代表メッセージ ── */
+    .message-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 2px 16px rgba(8,145,178,0.09);
+      border-left: 4px solid var(--primary);
+    }
+    .message-card .rep-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .message-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0 0 16px;
+    }
+    .message-card p {
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      line-height: 1.9;
+      margin: 0 0 12px;
+    }
+    .message-card .rep-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary2);
+      margin-top: 20px;
+      display: block;
+    }
+    .message-card .rep-name small {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+
+    /* ── 対応エリアマップ風 ── */
+    .area-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .area-tag {
+      background: var(--primary-bg);
+      color: var(--primary2);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(14,165,233,0.3);
+    }
+
+    /* ── ミッション ── */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 640px) {
+      .mission-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .mission-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(8,145,178,0.08);
+    }
+    .mission-card .icon { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+    .mission-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary2);
+      margin: 0 0 8px;
+    }
+    .mission-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <span class="logo-icon">❄️</span>
+      <span class="logo-text">【店舗名】<small>エアコンクリーニング専門店</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="global-nav" id="global-nav" aria-hidden="true">
+      <ul>
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="service.html">サービス</a></li>
+        <li><a href="price.html">料金</a></li>
+        <li><a href="cases.html">事例集</a></li>
+        <li><a href="about.html" class="active">会社概要</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+      <a href="contact.html" class="btn-primary nav-cta">無料見積もり</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ページヒーロー -->
+<div class="page-hero">
+  <div class="container">
+    <p class="page-hero-label">ABOUT US</p>
+    <h1 class="page-hero-title">会社概要</h1>
+    <p class="page-hero-desc">清潔な空気を届けるために、地域に根ざして活動しています。</p>
+  </div>
+</div>
+
+<!-- ミッション -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">MISSION</p>
+      <h2 class="section-title">私たちの想い</h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-card fade-in">
+        <span class="icon">🌿</span>
+        <h3>清潔な空気を届ける</h3>
+        <p>カビや細菌が繁殖したエアコンは健康リスクの温床。私たちはご家族の毎日を守るため、プロの技術で内部まで徹底洗浄します。</p>
+      </div>
+      <div class="mission-card fade-in">
+        <span class="icon">🤝</span>
+        <h3>誠実・丁寧なサービス</h3>
+        <p>作業前の説明・追加料金なし・施工後の確認まで、お客様が安心できる対応を徹底。信頼される地域のクリーニング店を目指します。</p>
+      </div>
+      <div class="mission-card fade-in">
+        <span class="icon">♻️</span>
+        <h3>エコ・省エネへの貢献</h3>
+        <p>定期クリーニングで電力効率が改善し、電気代の節約にもつながります。環境にやさしい選択をご一緒に。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 会社情報 + 代表メッセージ -->
+<section class="section" style="background: var(--green-bg);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">COMPANY INFO</p>
+      <h2 class="section-title">会社情報</h2>
+    </div>
+    <div class="about-layout">
+
+      <!-- 会社概要テーブル -->
+      <div class="fade-in">
+        <table class="company-table">
+          <tr>
+            <th>屋号・店舗名</th>
+            <td>【店舗名】エアコンクリーニング専門店</td>
+          </tr>
+          <tr>
+            <th>代表者名</th>
+            <td>【代表者名】</td>
+          </tr>
+          <tr>
+            <th>設立</th>
+            <td>【設立年月】</td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td>【住所】</td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><a href="tel:【電話番号】">【電話番号】</a></td>
+          </tr>
+          <tr>
+            <th>メール</th>
+            <td><a href="mailto:【メールアドレス】">【メールアドレス】</a></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>【営業時間】（定休日：【定休日】）</td>
+          </tr>
+          <tr>
+            <th>対応エリア</th>
+            <td>【地域名】およびその近隣エリア</td>
+          </tr>
+          <tr>
+            <th>事業内容</th>
+            <td>エアコンクリーニング・水回りクリーニング・定期メンテナンス</td>
+          </tr>
+          <tr>
+            <th>保険・資格</th>
+            <td>賠償責任保険加入済み／【保有資格があれば記載】</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 代表メッセージ -->
+      <div class="fade-in">
+        <div class="message-card">
+          <span class="rep-label">Representative Message</span>
+          <h3>代表あいさつ</h3>
+          <p>
+            はじめまして。【店舗名】代表の【代表者名】と申します。
+          </p>
+          <p>
+            エアコン内部は、目に見えないカビや細菌が繁殖しやすい場所です。毎日呼吸する空気の品質を守ることが、ご家族の健康につながると信じ、この事業を立ち上げました。
+          </p>
+          <p>
+            「頼んで良かった」と思っていただけるよう、技術・接客・アフターフォローすべてにこだわってまいります。まずはお気軽にご相談ください。
+          </p>
+          <span class="rep-name">【代表者名】<small>代表</small></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 対応エリア -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">SERVICE AREA</p>
+      <h2 class="section-title">対応エリア</h2>
+      <p class="section-desc">【地域名】を中心に近隣エリアへ出張いたします。エリア外もご相談ください。</p>
+    </div>
+    <div class="fade-in">
+      <div class="area-list">
+        <span class="area-tag">【地域名】（メインエリア）</span>
+        <span class="area-tag">【近隣エリア1】</span>
+        <span class="area-tag">【近隣エリア2】</span>
+        <span class="area-tag">【近隣エリア3】</span>
+        <span class="area-tag">【近隣エリア4】</span>
+        <span class="area-tag">その他ご相談ください</span>
+      </div>
+      <p style="margin-top:20px; font-size:0.88rem; color:var(--muted);">
+        ※ エリア外の場合も出張費用をご案内のうえ対応できる場合があります。まずはお問い合わせください。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary2) 100%); color: var(--white); text-align:center;">
+  <div class="container">
+    <p class="fade-in" style="font-size:0.9rem; opacity:0.85; margin:0 0 12px; letter-spacing:0.06em;">CONTACT</p>
+    <h2 class="fade-in" style="font-size:clamp(1.4rem,3vw,2rem); font-weight:700; margin:0 0 14px;">まずはお気軽にご相談ください</h2>
+    <p class="fade-in" style="font-size:0.95rem; opacity:0.9; margin:0 0 32px;">無料見積もり・ご質問はフォームまたはお電話から</p>
+    <div class="fade-in" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="contact.html" class="btn-primary" style="background:var(--white); color:var(--primary2); font-weight:700;">お問い合わせフォーム →</a>
+      <a href="tel:【電話番号】" class="btn-outline" style="border-color:rgba(255,255,255,0.6); color:var(--white);">📞 お電話はこちら</a>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span>❄️ 【店舗名】エアコンクリーニング専門店</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">トップ</a>
+      <a href="service.html">サービス</a>
+      <a href="price.html">料金</a>
+      <a href="cases.html">事例集</a>
+      <a href="about.html">会社概要</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 【店舗名】. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- チャットボットウィジェット -->
+<div class="chatbot-launcher" id="chatbot-launcher" aria-label="チャットを開く">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <span class="badge-dot"></span>
+</div>
+<div class="chatbot-window" id="chatbot-window" aria-hidden="true">
+  <div class="chatbot-header">
+    <span>💬 サポートチャット</span>
+    <button class="chatbot-close" aria-label="チャットを閉じる">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages"></div>
+  <div class="chatbot-quick" id="chatbot-quick"></div>
+  <div class="chatbot-input-row">
+    <input type="text" class="chatbot-input" placeholder="質問を入力…" aria-label="メッセージを入力">
+    <button class="chatbot-send" aria-label="送信">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/chatbot.js"></script>
+<script>
+/* ハンバーガーメニュー */
+const hamburger = document.getElementById('hamburger');
+const globalNav = document.getElementById('global-nav');
+if (hamburger && globalNav) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+    globalNav.classList.toggle('open', !isOpen);
+    globalNav.setAttribute('aria-hidden', isOpen);
+  });
+}
+
+/* フェードインアニメーション */
+const fadeEls = document.querySelectorAll('.fade-in');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => io.observe(el));
+} else {
+  fadeEls.forEach(el => el.classList.add('visible'));
+}
+</script>
+</body>
+</html>
