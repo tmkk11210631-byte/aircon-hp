@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事例集・お客様の声 | 【地域名】エアコンクリーニング専門店</title>
+  <meta name="description" content="エアコンクリーニング・水回りクリーニングのBefore/After事例とお客様の声。カビ・臭いの除去実績を写真つきで紹介。【地域名】対応。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    /* ── フィルターボタン ── */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .filter-btn {
+      padding: 8px 22px;
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* ── レビューカード ── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 640px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(8,145,178,0.09);
+      border-top: 3px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s;
+    }
+    .review-card:hover { box-shadow: 0 8px 28px rgba(8,145,178,0.16); }
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .review-tag {
+      display: inline-block;
+      background: var(--gray);
+      color: var(--primary2);
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    .review-stars { color: #F59E0B; font-size: 0.95rem; }
+    .review-score {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #F59E0B;
+      margin-left: 4px;
+    }
+    .review-text {
+      font-size: 0.85rem;
+      color: var(--charcoal);
+      line-height: 1.75;
+      margin: 0;
+      flex: 1;
+    }
+    .review-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: auto;
+    }
+
+    /* ── 総合評価バー ── */
+    .rating-summary {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 16px rgba(8,145,178,0.1);
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .rating-big {
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .rating-big-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .rating-big-stars { color: #F59E0B; font-size: 1.3rem; }
+    .rating-big-count { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+    .rating-bars { flex: 1; min-width: 200px; }
+    .rating-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+    .rating-bar-label { color: var(--muted); width: 20px; text-align: right; flex-shrink: 0; }
+    .rating-bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .rating-bar-fill {
+      height: 100%;
+      background: #F59E0B;
+      border-radius: 4px;
+    }
+    .rating-bar-count { color: var(--muted); width: 24px; flex-shrink: 0; font-size: 0.78rem; }
+
+    /* ── Before/After カード ── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 640px) {
+      .ba-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .ba-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(8,145,178,0.09);
+      transition: box-shadow 0.2s;
+    }
+    .ba-card:hover { box-shadow: 0 8px 28px rgba(8,145,178,0.16); }
+    .ba-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .ba-img {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .ba-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .ba-card:hover .ba-img img { transform: scale(1.04); }
+    .ba-label {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      z-index: 1;
+    }
+    .ba-img.before .ba-label { background: #EF4444; color: var(--white); }
+    .ba-img.after  .ba-label { background: var(--green); color: var(--white); }
+    .ba-body { padding: 20px; }
+    .ba-tag {
+      display: inline-block;
+      background: var(--gray);
+      color: var(--primary2);
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ba-body h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0 0 6px;
+    }
+    .ba-body p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* フェードイン */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* フィルター非表示 */
+    .review-card[data-hidden], .ba-card[data-hidden] { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <span class="logo-icon">❄️</span>
+      <span class="logo-text">【店舗名】<small>エアコンクリーニング専門店</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="global-nav" id="global-nav" aria-hidden="true">
+      <ul>
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="price.html">料金</a></li>
+        <li><a href="cases.html" class="active">事例集</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+      <a href="contact.html" class="btn-primary nav-cta">無料見積もり</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ページヒーロー -->
+<div class="page-hero">
+  <div class="container">
+    <p class="page-hero-label">CASES</p>
+    <h1 class="page-hero-title">事例集・お客様の声</h1>
+    <p class="page-hero-desc">実際の施工事例とお客様からいただいたリアルな声をご紹介します。</p>
+  </div>
+</div>
+
+<!-- お客様の声 -->
+<section class="section" style="background: var(--white);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">REVIEWS</p>
+      <h2 class="section-title">お客様の声</h2>
+    </div>
+
+    <!-- 総合評価 -->
+    <div class="rating-summary fade-in">
+      <div class="rating-big">
+        <div class="rating-big-num">5.0</div>
+        <div class="rating-big-stars">★★★★★</div>
+        <div class="rating-big-count">（【●●】件のレビュー）</div>
+      </div>
+      <div class="rating-bars">
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">5</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" style="width:88%"></div></div>
+          <span class="rating-bar-count">【●●】</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">4</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" style="width:10%"></div></div>
+          <span class="rating-bar-count">【●】</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">3</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%"></div></div>
+          <span class="rating-bar-count">0</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">2</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
+          <span class="rating-bar-count">0</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">1</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
+          <span class="rating-bar-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- フィルター -->
+    <div class="filter-bar fade-in" id="review-filter">
+      <button class="filter-btn active" data-filter="all">すべて</button>
+      <button class="filter-btn" data-filter="aircon">エアコン</button>
+      <button class="filter-btn" data-filter="water">水回り</button>
+    </div>
+
+    <!-- レビューカード -->
+    <div class="reviews-grid" id="reviews-grid">
+      <div class="review-card fade-in" data-category="aircon">
+        <div class="review-card-top">
+          <span class="review-tag">壁掛けエアコン</span>
+          <span><span class="review-stars">★★★★★</span><span class="review-score">5.0</span></span>
+        </div>
+        <p class="review-text">「クリーニング前はカビの臭いがひどかったのですが、施工後は全くなくなりました！作業も丁寧で、養生もしっかりしてくれたので安心でした。また利用します。」</p>
+        <div class="review-meta">【地域名】在住・30代女性 / 2026年3月</div>
+      </div>
+
+      <div class="review-card fade-in" data-category="aircon">
+        <div class="review-card-top">
+          <span class="review-tag">壁掛けエアコン×2台</span>
+          <span><span class="review-stars">★★★★★</span><span class="review-score">5.0</span></span>
+        </div>
+        <p class="review-text">「2台まとめてお願いしたらセット割で安くなりました。作業中の説明が丁寧で、どれだけ汚れていたか写真で見せてもらえて納得感がありました。」</p>
+        <div class="review-meta">【地域名】在住・40代男性 / 2026年2月</div>
+      </div>
+
+      <div class="review-card fade-in" data-category="water">
+        <div class="review-card-top">
+          <span class="review-tag">浴室クリーニング</span>
+          <span><span class="review-stars">★★★★★</span><span class="review-score">5.0</span></span>
+        </div>
+        <p class="review-text">「一人暮らしで女性スタッフをお願いしましたが、すぐに手配してもらえました。お風呂場の黒カビが綺麗さっぱりなくなって大満足です！」</p>
+        <div class="review-meta">【地域名】在住・20代女性 / 2026年2月</div>
+      </div>
+
+      <div class="review-card fade-in" data-category="aircon">
+        <div class="review-card-top">
+          <span class="review-tag">天井埋め込みエアコン</span>
+          <span><span class="review-stars">★★★★★</span><span class="review-score">5.0</span></span>
+        </div>
+        <p class="review-text">「天井埋め込み型で他の業者に断られたことがあったのですが、こちらはすぐ対応してもらえました。仕上がりもピカイチで、風の出方が全然違います。」</p>
+        <div class="review-meta">【地域名】在住・50代男性 / 2026年1月</div>
+      </div>
+
+      <div class="review-card fade-in" data-category="water">
+        <div class="review-card-top">
+          <span class="review-tag">キッチン換気扇</span>
+          <span><span class="review-stars">★★★★★</span><span class="review-score">5.0</span></span>
+        </div>
+        <p class="review-text">「10年間一度もクリーニングしていなかった換気扇でしたが、ベタベタの油汚れが見事になくなりました。こんなに綺麗になるとは思っていませんでした！」</p>
+        <div class="review-meta">【地域名】在住・40代女性 / 2026年1月</div>
+      </div>
+
+      <div class="review-card fade-in" data-category="aircon">
+        <div class="review-card-top">
+          <span class="review-tag">壁掛けエアコン</span>
+          <span><span class="review-stars">★★★★★</span><span class="review-score">5.0</span></span>
+        </div>
+        <p class="review-text">「エアコンをつけると咳が出てたのがなくなりました。お子さんのいるご家庭にも本当におすすめです。スタッフの方も明るくて話しやすかったです。」</p>
+        <div class="review-meta">【地域名】在住・30代女性 / 2025年12月</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Before/After 事例集 -->
+<section class="section" style="background: var(--gray);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">BEFORE / AFTER</p>
+      <h2 class="section-title">Before / After 事例集</h2>
+      <p class="section-desc">実際の施工前後の変化をご確認ください。実写真が揃い次第更新します。</p>
+    </div>
+
+    <!-- フィルター -->
+    <div class="filter-bar fade-in" id="ba-filter">
+      <button class="filter-btn active" data-filter="all">すべて</button>
+      <button class="filter-btn" data-filter="aircon">エアコン</button>
+    </div>
+
+    <div class="ba-grid" id="ba-grid">
+      <!-- エアコン事例1 -->
+      <div class="ba-card fade-in" data-category="aircon">
+        <div class="ba-images">
+          <div class="ba-img before">
+            <span class="ba-label">BEFORE</span>
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=75&auto=format&fit=crop&sat=-80&bri=-20"
+                 alt="クリーニング前：黒カビで汚れたエアコン内部">
+          </div>
+          <div class="ba-img after">
+            <span class="ba-label">AFTER</span>
+            <img src="https://images.unsplash.com/photo-1621905251189-9e3c8d37c8b2?w=500&q=75&auto=format&fit=crop"
+                 alt="クリーニング後：清潔なエアコン">
+          </div>
+        </div>
+        <div class="ba-body">
+          <span class="ba-tag">壁掛けエアコン</span>
+          <h3>フィン・ファンのカビ汚れ除去</h3>
+          <p>5年間未清掃の壁掛けエアコン。フィンと送風ファンが黒カビで覆われていましたが、高圧洗浄で完全除去。悪臭も消えました。</p>
+        </div>
+      </div>
+
+      <!-- エアコン事例2 -->
+      <div class="ba-card fade-in" data-category="aircon">
+        <div class="ba-images">
+          <div class="ba-img before">
+            <span class="ba-label">BEFORE</span>
+            <img src="https://images.unsplash.com/photo-1584820927498-cad076eea68c?w=500&q=75&auto=format&fit=crop"
+                 alt="クリーニング前：目詰まりしたエアコンフィルター">
+          </div>
+          <div class="ba-img after">
+            <span class="ba-label">AFTER</span>
+            <img src="https://images.unsplash.com/photo-1621905251189-9e3c8d37c8b2?w=500&q=75&auto=format&fit=crop&crop=top"
+                 alt="クリーニング後：高圧洗浄で清潔になったエアコン">
+          </div>
+        </div>
+        <div class="ba-body">
+          <span class="ba-tag">天井埋め込みエアコン</span>
+          <h3>フィルター目詰まりと内部の洗浄</h3>
+          <p>オフィスの4方向カセット型。フィルターが目詰まりし冷暖房効率が大幅に低下していました。分解洗浄で本来の性能を回復。</p>
+        </div>
+      </div>
+
+      <!-- エアコン事例3：ドレンパン・送風ファン -->
+      <div class="ba-card fade-in" data-category="aircon">
+        <div class="ba-images">
+          <div class="ba-img before">
+            <span class="ba-label">BEFORE</span>
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=75&auto=format&fit=crop&sat=-80&bri=-30"
+                 alt="クリーニング前：汚れたドレンパンと送風ファン">
+          </div>
+          <div class="ba-img after">
+            <span class="ba-label">AFTER</span>
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&q=75&auto=format&fit=crop"
+                 alt="クリーニング後：プロが丁寧に洗浄">
+          </div>
+        </div>
+        <div class="ba-body">
+          <span class="ba-tag">壁掛けエアコン</span>
+          <h3>ドレンパン・送風ファンの汚れ除去</h3>
+          <p>カビと水垢でぬめりが発生していたドレンパンと送風ファンを取り外して徹底洗浄。エアコンから出る嫌な臭いが完全になくなりました。</p>
+        </div>
+      </div>
+
+      <!-- エアコン事例4：業務用エアコン -->
+      <div class="ba-card fade-in" data-category="aircon">
+        <div class="ba-images">
+          <div class="ba-img before">
+            <span class="ba-label">BEFORE</span>
+            <img src="https://images.unsplash.com/photo-1584820927498-cad076eea68c?w=500&q=75&auto=format&fit=crop&sat=-80&bri=-30"
+                 alt="クリーニング前：目詰まりした業務用エアコン">
+          </div>
+          <div class="ba-img after">
+            <span class="ba-label">AFTER</span>
+            <img src="https://images.unsplash.com/photo-1621905251189-9e3c8d37c8b2?w=500&q=75&auto=format&fit=crop"
+                 alt="クリーニング後：高圧洗浄で隅々まで清潔に">
+          </div>
+        </div>
+        <div class="ba-body">
+          <span class="ba-tag">業務用エアコン</span>
+          <h3>大型業務用エアコンの分解洗浄</h3>
+          <p>店舗の天井カセット型業務用エアコン。長期間の汚れを高圧洗浄で徹底除去。冷暖房効率が改善し、電気代の削減にもつながりました。</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="fade-in" style="text-align:center; margin-top: 24px; font-size: 0.78rem; color: var(--muted);">
+      ※ 画像はイメージです。実際の施工写真が揃い次第、差し替えます。
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary2) 100%); color: var(--white); text-align: center; padding: 64px 24px;" class="fade-in">
+  <h2 style="font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; margin: 0 0 12px;">あなたのエアコン・水回りも綺麗にしませんか？</h2>
+  <p style="font-size: 0.95rem; opacity: 0.9; margin: 0 0 32px;">まずは無料でお見積もりいたします。</p>
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <a href="contact.html" style="background: var(--white); color: var(--primary2); font-weight: 700; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 1rem; transition: background 0.2s;">無料見積もりを依頼する</a>
+    <a href="contact.html" style="display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: var(--white); font-size: 1rem; font-weight: 700; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">LINEで相談する</a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span>❄️ 【店舗名】エアコンクリーニング専門店</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">トップ</a>
+      <a href="price.html">料金</a>
+      <a href="cases.html">事例集</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 【店舗名】. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- チャットボット -->
+<div class="chatbot-launcher" id="chatbot-launcher" aria-label="チャットを開く">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <span class="badge-dot"></span>
+</div>
+<div class="chatbot-window" id="chatbot-window" aria-hidden="true">
+  <div class="chatbot-header">
+    <span>💬 サポートチャット</span>
+    <button class="chatbot-close" aria-label="チャットを閉じる">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages"></div>
+  <div class="chatbot-quick" id="chatbot-quick"></div>
+  <div class="chatbot-input-row">
+    <input type="text" class="chatbot-input" placeholder="質問を入力…" aria-label="メッセージを入力">
+    <button class="chatbot-send" aria-label="送信">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/chatbot.js"></script>
+<script>
+/* ハンバーガーメニュー */
+const hamburger = document.getElementById('hamburger');
+const globalNav = document.getElementById('global-nav');
+if (hamburger && globalNav) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+    globalNav.classList.toggle('open', !isOpen);
+    globalNav.setAttribute('aria-hidden', isOpen);
+  });
+}
+
+/* フィルター機能（レビュー） */
+function setupFilter(filterId, gridId) {
+  const bar = document.getElementById(filterId);
+  const grid = document.getElementById(gridId);
+  if (!bar || !grid) return;
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    grid.querySelectorAll('[data-category]').forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        delete card.dataset.hidden;
+        card.style.display = '';
+      } else {
+        card.dataset.hidden = '1';
+        card.style.display = 'none';
+      }
+    });
+  });
+}
+setupFilter('review-filter', 'reviews-grid');
+setupFilter('ba-filter', 'ba-grid');
+
+/* フェードイン */
+const fadeEls = document.querySelectorAll('.fade-in');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => io.observe(el));
+} else {
+  fadeEls.forEach(el => el.classList.add('visible'));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | 【地域名】エアコンクリーニング専門店</title>
+  <meta name="description" content="エアコンクリーニング・水回りクリーニングのお問い合わせ・無料見積もりはこちら。フォームまたはLINEからお気軽にどうぞ。2営業日以内にご返答します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    /* ── お問い合わせレイアウト ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    @media (min-width: 860px) {
+      .contact-layout { grid-template-columns: 1fr 340px; gap: 48px; }
+    }
+
+    /* ── フォームエリア ── */
+    .contact-form-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 2px 16px rgba(8,145,178,0.1);
+    }
+    @media (max-width: 480px) {
+      .contact-form-box { padding: 24px 18px; }
+    }
+    .contact-form-box h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0 0 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* 種別ラジオ */
+    .type-select {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .type-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 8px 18px;
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .type-label input[type="radio"] { display: none; }
+    .type-label:hover, .type-label:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* フォームグループ */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 560px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .form-group.full { grid-column: 1 / -1; }
+    }
+
+    /* 送信完了メッセージ */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .form-success h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0 0 10px;
+    }
+    .form-success p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── サイドバー ── */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+    /* LINE誘導カード */
+    .line-card {
+      background: #06C755;
+      color: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .line-card-icon { font-size: 2.8rem; margin-bottom: 10px; }
+    .line-card h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+    .line-card p { font-size: 0.82rem; opacity: 0.9; line-height: 1.6; margin: 0 0 18px; }
+    .line-card .btn-line-white {
+      display: inline-block;
+      background: var(--white);
+      color: #06C755;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .line-card .btn-line-white:hover { opacity: 0.88; }
+
+    /* インフォカード */
+    .info-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(8,145,178,0.08);
+    }
+    .info-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary2);
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row {
+      display: flex;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .info-row-icon { color: var(--primary); flex-shrink: 0; }
+
+    /* ── FAQ アコーディオン ── */
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      gap: 12px;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .faq-question:hover { background: var(--gray); }
+    .faq-question span { flex: 1; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: transform 0.25s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .faq-answer-inner { padding: 0 20px 18px; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-q-mark {
+      color: var(--primary);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+
+    /* フェードイン */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <span class="logo-icon">❄️</span>
+      <span class="logo-text">【店舗名】<small>エアコンクリーニング専門店</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="global-nav" id="global-nav" aria-hidden="true">
+      <ul>
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="price.html">料金</a></li>
+        <li><a href="cases.html">事例集</a></li>
+        <li><a href="contact.html" class="active">お問い合わせ</a></li>
+      </ul>
+      <a href="contact.html" class="btn-primary nav-cta">無料見積もり</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ページヒーロー -->
+<div class="page-hero">
+  <div class="container">
+    <p class="page-hero-label">CONTACT</p>
+    <h1 class="page-hero-title">お問い合わせ</h1>
+    <p class="page-hero-desc">無料見積もり・サービスのご質問など、お気軽にどうぞ。<br>2営業日以内にご返答いたします。</p>
+  </div>
+</div>
+
+<!-- お問い合わせフォーム + サイドバー -->
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- フォームエリア -->
+      <div class="fade-in">
+        <div class="contact-form-box">
+          <h2>📋 お問い合わせフォーム</h2>
+
+          <!-- お問い合わせ種別 -->
+          <div class="type-select" role="group" aria-label="お問い合わせ種別">
+            <label class="type-label"><input type="radio" name="contact-type" value="aircon" checked>❄️ エアコン</label>
+            <label class="type-label"><input type="radio" name="contact-type" value="water">🚿 水回り</label>
+            <label class="type-label"><input type="radio" name="contact-type" value="estimate">💰 お見積もり</label>
+            <label class="type-label"><input type="radio" name="contact-type" value="other">✉️ その他</label>
+          </div>
+
+          <!-- フォーム本体 -->
+          <form id="contact-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="name">お名前 <span class="required">必須</span></label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="山田 太郎" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">電話番号 <span class="required">必須</span></label>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="090-0000-0000" required autocomplete="tel">
+              </div>
+              <div class="form-group full">
+                <label class="form-label" for="email">メールアドレス <span class="required">必須</span></label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required autocomplete="email">
+              </div>
+              <div class="form-group full">
+                <label class="form-label" for="preferred-date">ご希望日時（第1希望）</label>
+                <input type="datetime-local" id="preferred-date" name="preferred-date" class="form-input">
+              </div>
+              <div class="form-group full">
+                <label class="form-label" for="address">施工場所（市区町村まで）</label>
+                <input type="text" id="address" name="address" class="form-input" placeholder="例：【地域名】市〇〇区" autocomplete="address-level2">
+              </div>
+              <div class="form-group full">
+                <label class="form-label" for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="例：壁掛けエアコン2台のクリーニングをお願いしたいです。設置後5年で一度もクリーニングしていません。" required></textarea>
+              </div>
+            </div>
+
+            <!-- プライバシーポリシー -->
+            <div class="privacy-check">
+              <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+                <input type="checkbox" id="privacy" name="privacy" required style="margin-top:3px; width:18px; height:18px; accent-color: var(--primary); flex-shrink:0;">
+                <span style="font-size:0.83rem; color:var(--muted); line-height:1.6;">
+                  <a href="#" style="color:var(--primary);">プライバシーポリシー</a>に同意します。<span class="required">必須</span>
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%; padding: 16px; font-size: 1rem; margin-top: 8px; border: none; cursor: pointer;">
+              送信する →
+            </button>
+          </form>
+
+          <!-- 送信完了メッセージ -->
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">✅</div>
+            <h3>お問い合わせを受け付けました</h3>
+            <p>ご連絡ありがとうございます。<br>2営業日以内に担当者よりご連絡いたします。<br>しばらくお待ちください。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- サイドバー -->
+      <div class="contact-sidebar fade-in">
+
+        <!-- LINE誘導 -->
+        <div class="line-card">
+          <div class="line-card-icon">💬</div>
+          <h3>LINEでも相談できます</h3>
+          <p>写真を送って状態を確認してもらえます。気軽にメッセージをどうぞ！</p>
+          <a href="#" class="btn-line-white">LINEで相談する</a>
+        </div>
+
+        <!-- 営業情報 -->
+        <div class="info-card">
+          <h3>📞 営業情報</h3>
+          <div class="info-row">
+            <span class="info-row-icon">🕐</span>
+            <span>受付時間：9:00〜18:00<br><span style="font-size:0.78rem; color:var(--muted);">年中無休（年末年始を除く）</span></span>
+          </div>
+          <div class="info-row">
+            <span class="info-row-icon">📍</span>
+            <span>対応エリア：【地域名】エリア<br><span style="font-size:0.78rem; color:var(--muted);">エリア外もご相談ください</span></span>
+          </div>
+          <div class="info-row">
+            <span class="info-row-icon">📋</span>
+            <span>返答まで：2営業日以内</span>
+          </div>
+        </div>
+
+        <!-- 急ぎの場合 -->
+        <div class="info-card" style="border-left: 4px solid var(--pink); border-radius: 0 12px 12px 0;">
+          <h3 style="color: var(--pink);">⚡ お急ぎの場合</h3>
+          <p style="font-size:0.83rem; color:var(--muted); line-height:1.7; margin:0;">
+            最短翌日対応も可能です（空き状況による）。<br>
+            フォームの「お問い合わせ内容」に<strong>「急ぎ希望」</strong>とご記入いただくか、LINEにてご相談ください。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background: var(--gray);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">よくあるご質問</h2>
+    </div>
+    <div class="faq-list fade-in" style="max-width: 720px; margin: 0 auto;">
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>料金はどのくらいかかりますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            壁掛けエアコンは ¥【●,●●●】〜（税込）から承っています。機種や汚れ具合により変動する場合があります。詳しくは <a href="price.html" style="color:var(--primary);">料金ページ</a> をご確認ください。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>当日・翌日に対応してもらえますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            空き状況によりますが、最短翌日のご対応が可能です。お急ぎの場合はフォームに「急ぎ希望」とご記入いただくか、LINEからご相談ください。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>エアコンの種類がわかりません。大丈夫ですか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            もちろん大丈夫です！LINEで写真を送っていただければ、スタッフが機種を確認してご案内します。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>作業中に部屋は汚れますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            養生シートでしっかり保護してから作業を行いますので、床や壁が汚れることはほとんどありません。作業後は周辺を清掃してから退出します。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>キャンセルはいつまで無料ですか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            ご予約の前日までのキャンセルは無料です。当日キャンセルはキャンセル料が発生する場合があります。詳しくはお問い合わせください。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>支払い方法は何がありますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            現金・クレジットカード・PayPayに対応しています。お支払いは施工完了後にその場でお支払いいただけます。
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          <span>女性スタッフに来てもらえますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            女性スタッフによる対応も可能です。お申し込み・お問い合わせの際に「女性スタッフ希望」とお知らせください。一人暮らしの女性の方も安心してご利用いただけます。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span>❄️ 【店舗名】エアコンクリーニング専門店</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">トップ</a>
+      <a href="price.html">料金</a>
+      <a href="cases.html">事例集</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 【店舗名】. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- チャットボット -->
+<div class="chatbot-launcher" id="chatbot-launcher" aria-label="チャットを開く">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <span class="badge-dot"></span>
+</div>
+<div class="chatbot-window" id="chatbot-window" aria-hidden="true">
+  <div class="chatbot-header">
+    <span>💬 サポートチャット</span>
+    <button class="chatbot-close" aria-label="チャットを閉じる">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages"></div>
+  <div class="chatbot-quick" id="chatbot-quick"></div>
+  <div class="chatbot-input-row">
+    <input type="text" class="chatbot-input" placeholder="質問を入力…" aria-label="メッセージを入力">
+    <button class="chatbot-send" aria-label="送信">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/chatbot.js"></script>
+<script>
+/* ハンバーガーメニュー */
+const hamburger = document.getElementById('hamburger');
+const globalNav = document.getElementById('global-nav');
+if (hamburger && globalNav) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+    globalNav.classList.toggle('open', !isOpen);
+    globalNav.setAttribute('aria-hidden', isOpen);
+  });
+}
+
+/* フォーム送信（デモ：実際はサーバー送信に差し替え） */
+document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!this.checkValidity()) {
+    this.reportValidity();
+    return;
+  }
+  this.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+  window.scrollTo({ top: document.querySelector('.contact-form-box').offsetTop - 80, behavior: 'smooth' });
+});
+
+/* FAQアコーディオン */
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    /* 他を閉じる */
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* フェードイン */
+const fadeEls = document.querySelectorAll('.fade-in');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => io.observe(el));
+} else {
+  fadeEls.forEach(el => el.classList.add('visible'));
+}
+</script>
+</body>
+</html>
